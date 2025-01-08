@@ -15,7 +15,7 @@ const app = express();
 app.use(
   cors({
     origin: "https://ems-frontend-angelique-tuyisabes-projects.vercel.app",
-    credentials: true,
+    methods: "GET,POST,PUT,DELETE",
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
