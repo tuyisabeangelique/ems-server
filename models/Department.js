@@ -1,0 +1,34 @@
+import mongoose from "mongoose";
+import Employee from "./Employee.js";
+import Leave from "./Leave.js";
+import Salary from "./Salary.js";
+
+const departmentSchema = mongoose.Schema({
+  dep_name: { type: String, required: true },
+  description: { type: String },
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
+});
+
+// Middleware to call whenever we delete a department. We want to delete all employees associated with that department, and their data as well.
+departmentSchema.pre(
+  "deleteOne",
+  { document: true, query: false },
+  async function (next) {
+    try {
+      const employees = await Employee.find({ department: this._id });
+      const empIds = employees.map((emp) => emp._id);
+
+      await Employee.deleteMany({ department: this._id });
+      await Leave.deleteMany({ employeeId: { $in: empIds } });
+      await Salary.deleteMany({ employeeId: { $in: empIds } });
+      next();
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+const Department = mongoose.model("Department", departmentSchema);
+
+export default Department;
