@@ -12,13 +12,20 @@ import dashboardRouter from "./routes/dashboard.js";
 
 connectToDatabase();
 const app = express();
-app.use(
-  cors({
-    origin: "https://ems-frontend-angelique-tuyisabes-projects.vercel.app",
-    methods: "GET,POST,PUT,DELETE",
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
+const corsOrigin = {
+  origin: "https://ems-frontend-angelique-tuyisabes-projects.vercel.app",
+  credentials: true,
+  optionSuccessStatus: 200,
+};
+app.use(cors(corsOrigin));
+
+// app.use(
+//   cors({
+//     origin: "https://ems-frontend-angelique-tuyisabes-projects.vercel.app",
+//     methods: "GET,POST,PUT,DELETE",
+//     allowedHeaders: ["Content-Type", "Authorization"],
+//   })
+// );
 app.use(express.json());
 // Allows us to access the public folder from the frontend
 app.use(express.static("public/uploads"));
