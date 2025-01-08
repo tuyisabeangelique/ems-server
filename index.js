@@ -16,6 +16,7 @@ app.use(
   cors({
     origin: "https://ems-frontend-angelique-tuyisabes-projects.vercel.app",
     credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 app.use(express.json());
