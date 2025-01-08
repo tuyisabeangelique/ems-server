@@ -12,7 +12,12 @@ import dashboardRouter from "./routes/dashboard.js";
 
 connectToDatabase();
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://ems-frontend-angelique-tuyisabes-projects.vercel.app",
+    credentials: true,
+  })
+);
 app.use(express.json());
 // Allows us to access the public folder from the frontend
 app.use(express.static("public/uploads"));
