@@ -8,11 +8,11 @@ const login = async (req, res) => {
   try {
     //
     console.log("trying to login . . .");
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    // res.setHeader(
-    //   "Access-Control-Allow-Origin",
-    //   "https://ems-frontend-six.vercel.app"
-    // );
+    // res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader(
+      "Access-Control-Allow-Origin",
+      "https://ems-frontend-six.vercel.app"
+    );
     // res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
     res.setHeader(
       "Access-Control-Allow-Methods",
