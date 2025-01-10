@@ -13,7 +13,7 @@ import dashboardRouter from "./routes/dashboard.js";
 connectToDatabase();
 const app = express();
 const corsOrigin = {
-  origin: ["https://ems-frontend-angelique-tuyisabes-projects.vercel.app"],
+  origin: "https://ems-frontend-six.vercel.app",
   credentials: true,
   // optionSuccessStatus: 200,
 };
