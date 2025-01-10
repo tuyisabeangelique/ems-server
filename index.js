@@ -1,7 +1,7 @@
 // We are allowed to import this way because we added type: module in index.js
 import express from "express";
 import cors from "cors";
-import authRouter from "./routes/auth.js";   
+import authRouter from "./routes/auth.js";
 import connectToDatabase from "./db/db.js";
 import departmentRouter from "./routes/department.js";
 import employeeRouter from "./routes/employee.js";
@@ -13,7 +13,7 @@ import dashboardRouter from "./routes/dashboard.js";
 connectToDatabase();
 const app = express();
 const corsOrigin = {
-  origin: "https://ems-frontend-six.vercel.app",
+  origin: ["https://ems-frontend-six.vercel.app"],
   credentials: true,
   // optionSuccessStatus: 200,
 };
@@ -21,7 +21,7 @@ app.use(cors(corsOrigin));
 
 app.use(express.json());
 // Allows us to access the public folder from the frontend
-app.use(express.static("public/uploads"));   
+app.use(express.static("public/uploads"));
 app.use("/api/auth", authRouter);
 app.use("/api/department", departmentRouter);
 app.use("/api/employee", employeeRouter);

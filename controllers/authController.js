@@ -6,16 +6,24 @@ import { userRegister } from "../userSeed.js";
 const login = async (req, res) => {
   // Verify user credentials
   try {
+    //
+    console.log("trying to login . . .");
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    // res.setHeader(
+    //   "Access-Control-Allow-Origin",
+    //   "https://ems-frontend-six.vercel.app"
+    // );
+    // res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
     res.setHeader(
-      "Access-Control-Allow-Origin",
-      "https://ems-frontend-six.vercel.app"
+      "Access-Control-Allow-Methods",
+      "GET, POST, PUT, DELETE, OPTIONS"
     );
-    res.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
     res.setHeader(
       "Access-Control-Allow-Headers",
       "Content-Type, Authorization"
     );
     res.setHeader("Access-Control-Allow-Credentials", "true");
+    console.log("headers are set . . .");
 
     const { email, password } = req.body;
 
