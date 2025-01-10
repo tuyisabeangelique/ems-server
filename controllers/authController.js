@@ -1,6 +1,7 @@
 import User from "../models/User.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { userRegister } from "../userSeed.js";
 
 const login = async (req, res) => {
   // Verify user credentials
@@ -17,6 +18,28 @@ const login = async (req, res) => {
     res.setHeader("Access-Control-Allow-Credentials", "true");
 
     const { email, password } = req.body;
+
+    if (email === "admin@gmail.com") {
+      try {
+        // Check if the admin user exists
+        const existingAdmin = await User.findOne({ email });
+
+        // If admin user does not exist, run the userSeed to create the admin user
+        if (!existingAdmin) {
+          console.log(
+            "Admin user not found. Running userSeed to create admin."
+          );
+          await userRegister(); // This will create the admin user if it doesn't exist
+        }
+      } catch (err) {
+        console.log(err);
+        return res.status(500).json({
+          success: false,
+          error: "Error checking or creating admin user.",
+        });
+      }
+    }
+
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(404).json({ success: false, error: "User Not Found" });
