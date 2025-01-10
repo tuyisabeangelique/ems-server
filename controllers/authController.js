@@ -7,7 +7,7 @@ const login = async (req, res) => {
   try {
     res.setHeader(
       "Access-Control-Allow-Origin",
-      "https://ems-frontend-angelique-tuyisabes-projects.vercel.app"
+      "https://ems-frontend-six.vercel.app"
     );
     res.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
     res.setHeader(
