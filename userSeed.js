@@ -19,4 +19,4 @@ const userRegister = async () => {
   }
 };
 
-userRegister();
+export { userRegister };
