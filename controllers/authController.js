@@ -5,6 +5,17 @@ import jwt from "jsonwebtoken";
 const login = async (req, res) => {
   // Verify user credentials
   try {
+    res.setHeader(
+      "Access-Control-Allow-Origin",
+      "https://ems-frontend-angelique-tuyisabes-projects.vercel.app"
+    );
+    res.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
+    res.setHeader(
+      "Access-Control-Allow-Headers",
+      "Content-Type, Authorization"
+    );
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+
     const { email, password } = req.body;
     const user = await User.findOne({ email });
     if (!user) {

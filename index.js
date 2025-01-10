@@ -13,7 +13,7 @@ import dashboardRouter from "./routes/dashboard.js";
 connectToDatabase();
 const app = express();
 const corsOrigin = {
-  origin: "https://ems-frontend-angelique-tuyisabes-projects.vercel.app",
+  origin: ["https://ems-frontend-angelique-tuyisabes-projects.vercel.app"],
   credentials: true,
   // optionSuccessStatus: 200,
 };
@@ -30,6 +30,7 @@ app.use("/api/leave", leaveRouter);
 app.use("/api/settings", settingsRouter);
 app.use("/api/dashboard", dashboardRouter);
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server is running on ${process.env.PORT}`);
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server is running on ${PORT}`);
 });
